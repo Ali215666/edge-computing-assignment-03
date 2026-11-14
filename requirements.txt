@@ -8,3 +8,4 @@ numpy>=1.26
 pandas>=2.0
 matplotlib>=3.8
 pillow>=10.0
+markdown>=3.5        # only for scripts/make_pdf.py (report -> PDF)

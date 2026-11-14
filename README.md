@@ -13,7 +13,8 @@ in four different ways, then benchmarks and deploys all five models:
 
 All five are benchmarked on the full CIFAR-10 test set (`scripts/benchmark.py`) and exported to
 ONNX and validated with ONNX Runtime (`scripts/export_onnx.py`). Measured results, plots and a
-discussion are in **[docs/technical_report.md](docs/technical_report.md)**.
+discussion are in **[docs/technical_report.md](docs/technical_report.md)** (PDF version:
+**[docs/technical_report.pdf](docs/technical_report.pdf)**, rebuilt with `python scripts/make_pdf.py`).
 
 ### Results at a glance (measured, full test set, CPU, from `results/model_comparison.csv`)
 
