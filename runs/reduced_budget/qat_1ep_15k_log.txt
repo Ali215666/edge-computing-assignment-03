@@ -1,0 +1,12 @@
+[qat] quantized engine: onednn, reduce_range=True, training device: cpu
+[qat] FP32 baseline test acc 91.56%
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:534: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[qat] fake-quant val acc before QAT fine-tuning: 92.06%
+  qat ep1/1 [50/118] loss 0.1154 acc 96.11% (300s, eta 408s)
+  [qat] BN statistics frozen at step 59
+  [qat] observers frozen at step 83
+  qat ep1/1 [100/118] loss 0.1050 acc 96.54% (589s, eta 106s)
+[qat] epoch 1/1: train 96.62% val 92.62% (689s)
+[qat] fake-quant test 91.48% | INT8 val 92.74% | INT8 test 91.49% (loss 0.2505) | drop vs FP32 +0.07 pts
+[qat] saved D:\7th Semester\Edge Computing\Assignments\Assignment 03\models\checkpoints\qat_int8.pth (+ fake-quant model qat_fakequant.pth)

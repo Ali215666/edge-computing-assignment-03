@@ -1,0 +1,6 @@
+model,display,params,nonzero_params,weight_sparsity,macs_m,torch_size_mb,size_gzip_mb,compression_ratio,gzip_compression_ratio,param_compression,torch_test_acc,acc_delta_vs_fp32,torch_test_loss,torch_throughput_ips,throughput_speedup,torch_latency_bs1_mean_ms,latency_bs1_speedup,onnx_test_acc,onnx_test_loss,onnx_size_mb,onnx_throughput_ips,onnx_latency_bs1_mean_ms,torch_onnx_pred_agreement_pct
+fp32,Original FP32,11173962,11173962,0.0,555.42,42.7,39.625,1.0,1.078,1.0,91.56,0.0,0.24789,97.31,1.0,22.085,1.0,91.56,0.24789,42.689,165.06,9.363,100.0
+ptq,PTQ INT8,11169162,11034336,0.01208,555.42,10.782,9.628,3.96,4.435,1.0,91.56,0.0,0.24889,285.66,2.936,12.357,1.787,91.53,0.2485,10.771,309.24,4.489,99.69
+qat,QAT INT8,11169162,11034234,0.01209,555.42,10.782,9.628,3.96,4.435,1.0,91.74,0.18,0.25991,284.3,2.922,12.454,1.773,91.7,0.25976,10.771,316.74,4.501,99.71
+unstructured,Unstructured-pruned,11173962,2242481,0.8,555.42,42.7,12.235,1.0,3.49,1.0,91.52,-0.04,0.26762,93.66,0.962,22.04,1.002,91.52,0.26762,42.689,163.12,9.074,100.0
+structured,Structured-pruned,4227706,4227706,0.0,210.13,16.189,15.007,2.638,2.845,2.643,91.51,-0.05,0.25611,207.7,2.134,13.847,1.595,91.51,0.25611,16.197,424.9,3.192,100.0

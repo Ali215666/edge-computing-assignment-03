@@ -1,0 +1,147 @@
+{
+  "all_passed": true,
+  "passed": 28,
+  "total": 28,
+  "checks": [
+    {
+      "check": "script --help: benchmark.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: export_onnx.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: inference.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: make_report.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: onnx_inference.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: ptq.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: qat.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: structured_pruning.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: train.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "script --help: unstructured_pruning.py",
+      "ok": true,
+      "detail": "ok"
+    },
+    {
+      "check": "load + CPU inference: fp32",
+      "ok": true,
+      "detail": "output (64, 10), acc on 64 test images 90.6%, smoke=False"
+    },
+    {
+      "check": "checkpoint save/load round trip: fp32",
+      "ok": true,
+      "detail": "identical outputs after reload"
+    },
+    {
+      "check": "load + CPU inference: ptq",
+      "ok": true,
+      "detail": "output (64, 10), acc on 64 test images 90.6%, smoke=False"
+    },
+    {
+      "check": "checkpoint save/load round trip: ptq",
+      "ok": true,
+      "detail": "identical outputs after reload"
+    },
+    {
+      "check": "load + CPU inference: qat",
+      "ok": true,
+      "detail": "output (64, 10), acc on 64 test images 90.6%, smoke=False"
+    },
+    {
+      "check": "checkpoint save/load round trip: qat",
+      "ok": true,
+      "detail": "identical outputs after reload"
+    },
+    {
+      "check": "load + CPU inference: unstructured",
+      "ok": true,
+      "detail": "output (64, 10), acc on 64 test images 90.6%, smoke=False"
+    },
+    {
+      "check": "checkpoint save/load round trip: unstructured",
+      "ok": true,
+      "detail": "identical outputs after reload"
+    },
+    {
+      "check": "load + CPU inference: structured",
+      "ok": true,
+      "detail": "output (64, 10), acc on 64 test images 89.1%, smoke=False"
+    },
+    {
+      "check": "checkpoint save/load round trip: structured",
+      "ok": true,
+      "detail": "identical outputs after reload"
+    },
+    {
+      "check": "INT8 conversion: ptq",
+      "ok": true,
+      "detail": "21 INT8 conv/linear layers (['Conv2d', 'ConvReLU2d', 'Linear']), weights {torch.qint8}, engine onednn"
+    },
+    {
+      "check": "INT8 conversion: qat",
+      "ok": true,
+      "detail": "21 INT8 conv/linear layers (['Conv2d', 'ConvReLU2d', 'Linear']), weights {torch.qint8}, engine onednn"
+    },
+    {
+      "check": "unstructured: pruning made permanent, sparsity",
+      "ok": true,
+      "detail": "conv+fc sparsity 0.8000 (target 0.8), no masks/hooks"
+    },
+    {
+      "check": "structured: physically smaller, valid dimensions",
+      "ok": true,
+      "detail": "4,227,706 vs 11,173,962 params (2.64x), 20 conv layers with fewer channels"
+    },
+    {
+      "check": "unified PyTorch inference script (all models)",
+      "ok": true,
+      "detail": "fp32:cat(1.00), ptq:cat(1.00), qat:cat(1.00), unstructured:cat(1.00), structured:cat(1.00)"
+    },
+    {
+      "check": "ONNX Runtime inference script (all exported models)",
+      "ok": true,
+      "detail": "fp32:3(1.00), ptq:3(1.00), qat:3(1.00), unstructured:3(1.00), structured:3(1.00)"
+    },
+    {
+      "check": "ONNX exports validated against PyTorch",
+      "ok": true,
+      "detail": "top-1 agreement: fp32 100.00%, ptq 99.70%, qat 99.55%, unstructured 100.00%, structured 100.00%"
+    },
+    {
+      "check": "result CSVs contain measured data for all models",
+      "ok": true,
+      "detail": "5 models, 10000 predictions/model, training_history 25 rows, stages ['baseline', 'qat', 'structured', 'unstructured']"
+    }
+  ]
+}

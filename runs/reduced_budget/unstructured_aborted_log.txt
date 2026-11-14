@@ -1,0 +1,13 @@
+[unstructured] baseline test acc 91.56%
+[unstructured] round 1/3: pruned 0.415 of remaining -> sparsity 0.4152, val acc before fine-tune 92.46%
+  unstructured_r1 ep1/1 [50/118] loss 0.1211 acc 95.95% (213s, eta 290s)
+  unstructured_r1 ep1/1 [100/118] loss 0.1153 acc 96.12% (424s, eta 76s)
+[unstructured_r1] epoch 1/1: train 96.17% val 92.28% (497s)
+[unstructured] round 2/3: pruned 0.415 of remaining -> sparsity 0.6580, val acc before fine-tune 90.46%
+  unstructured_r2 ep1/1 [50/118] loss 0.0540 acc 99.11% (214s, eta 291s)
+  unstructured_r2 ep1/1 [100/118] loss 0.0694 acc 98.34% (431s, eta 78s)
+[unstructured_r2] epoch 1/1: train 98.06% val 92.24% (506s)
+[unstructured] round 3/3: pruned 0.415 of remaining -> sparsity 0.8000, val acc before fine-tune 85.92%
+  unstructured_r3 ep1/1 [50/118] loss 0.0397 acc 99.72% (213s, eta 290s)
+  unstructured_r3 ep1/1 [100/118] loss 0.0589 acc 98.89% (427s, eta 77s)
+[unstructured_r3] epoch 1/1: train 98.47% val 92.02% (501s)

@@ -1,0 +1,10 @@
+# Versions used to produce the reported results (Python 3.12.10, Windows 11, CPU only)
+torch>=2.3            # tested with 2.14.0+cpu (eager-mode torch.ao.quantization)
+torchvision>=0.18     # tested with 0.29.0+cpu
+onnx>=1.16            # tested with 1.23.2
+onnxruntime>=1.18     # tested with 1.32.0
+onnxscript>=0.1       # needed by the torch.export-based ONNX exporter (dynamo=True)
+numpy>=1.26
+pandas>=2.0
+matplotlib>=3.8
+pillow>=10.0

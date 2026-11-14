@@ -1,0 +1,197 @@
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\qat.py --data-dir D:\7th Semester\Edge Computing\Assignments\Assignment 03\data --seed 42 --batch-size 128 --threads 0 --epochs 2 --lr 0.001
+================================================================================
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:534: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[qat] quantized engine: onednn, reduce_range=True, training device: cpu
+[qat] FP32 baseline test acc 91.56%
+[qat] fake-quant val acc before QAT fine-tuning: 92.30%
+  qat ep1/2 [50/352] loss 0.0921 acc 97.14% (296s, eta 1789s)
+  qat ep1/2 [100/352] loss 0.0965 acc 96.90% (590s, eta 1488s)
+  qat ep1/2 [150/352] loss 0.1020 acc 96.61% (871s, eta 1173s)
+  qat ep1/2 [200/352] loss 0.1020 acc 96.63% (1056s, eta 803s)
+  qat ep1/2 [250/352] loss 0.1019 acc 96.68% (1246s, eta 508s)
+  qat ep1/2 [300/352] loss 0.1014 acc 96.70% (1436s, eta 249s)
+  qat ep1/2 [350/352] loss 0.1027 acc 96.65% (1628s, eta 9s)
+  [qat] BN statistics frozen at step 352
+[qat] epoch 1/2: train 96.65% val 92.60% (1634s)
+  qat ep2/2 [50/352] loss 0.0907 acc 97.33% (189s, eta 1144s)
+  qat ep2/2 [100/352] loss 0.0867 acc 97.27% (379s, eta 956s)
+  [qat] observers frozen at step 493
+  qat ep2/2 [150/352] loss 0.0891 acc 97.14% (569s, eta 766s)
+  qat ep2/2 [200/352] loss 0.0902 acc 97.04% (757s, eta 576s)
+  qat ep2/2 [250/352] loss 0.0905 acc 97.01% (946s, eta 386s)
+  qat ep2/2 [300/352] loss 0.0907 acc 97.03% (1143s, eta 198s)
+  qat ep2/2 [350/352] loss 0.0908 acc 97.02% (1339s, eta 8s)
+[qat] epoch 2/2: train 97.02% val 92.40% (1345s)
+[qat] fake-quant test 91.68% | INT8 val 92.40% | INT8 test 91.74% (loss 0.2599) | drop vs FP32 -0.18 pts
+[qat] saved D:\7th Semester\Edge Computing\Assignments\Assignment 03\models\checkpoints\qat_int8.pth (+ fake-quant model qat_fakequant.pth)
+--- qat.py finished in 3504s
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\unstructured_pruning.py --data-dir D:\7th Semester\Edge Computing\Assignments\Assignment 03\data --seed 42 --batch-size 128 --threads 0 --target-sparsity 0.8 --iterations 3 --finetune-epochs 1 --final-epochs 1
+================================================================================
+[unstructured] baseline test acc 91.56%
+[unstructured] round 1/3: pruned 0.415 of remaining -> sparsity 0.4152, val acc before fine-tune 92.46%
+  unstructured_r1 ep1/1 [50/352] loss 0.0984 acc 96.91% (216s, eta 1307s)
+  unstructured_r1 ep1/1 [100/352] loss 0.1052 acc 96.55% (433s, eta 1090s)
+  unstructured_r1 ep1/1 [150/352] loss 0.1114 acc 96.37% (648s, eta 872s)
+  unstructured_r1 ep1/1 [200/352] loss 0.1119 acc 96.34% (863s, eta 656s)
+  unstructured_r1 ep1/1 [250/352] loss 0.1113 acc 96.36% (1078s, eta 440s)
+  unstructured_r1 ep1/1 [300/352] loss 0.1102 acc 96.41% (1294s, eta 224s)
+  unstructured_r1 ep1/1 [350/352] loss 0.1112 acc 96.39% (1511s, eta 9s)
+[unstructured_r1] epoch 1/1: train 96.39% val 92.58% (1517s)
+[unstructured] round 2/3: pruned 0.415 of remaining -> sparsity 0.6580, val acc before fine-tune 90.80%
+  unstructured_r2 ep1/1 [50/352] loss 0.0465 acc 99.30% (225s, eta 1359s)
+  unstructured_r2 ep1/1 [100/352] loss 0.0457 acc 99.30% (448s, eta 1128s)
+  unstructured_r2 ep1/1 [150/352] loss 0.0496 acc 99.14% (669s, eta 900s)
+  unstructured_r2 ep1/1 [200/352] loss 0.0534 acc 98.97% (888s, eta 675s)
+  unstructured_r2 ep1/1 [250/352] loss 0.0591 acc 98.72% (1108s, eta 452s)
+  unstructured_r2 ep1/1 [300/352] loss 0.0655 acc 98.43% (1276s, eta 221s)
+  unstructured_r2 ep1/1 [350/352] loss 0.0732 acc 98.08% (1429s, eta 8s)
+[unstructured_r2] epoch 1/1: train 98.08% val 92.38% (1433s)
+[unstructured] round 3/3: pruned 0.415 of remaining -> sparsity 0.8000, val acc before fine-tune 86.18%
+  unstructured_r3 ep1/2 [50/352] loss 0.0257 acc 99.91% (153s, eta 924s)
+  unstructured_r3 ep1/2 [100/352] loss 0.0264 acc 99.87% (318s, eta 800s)
+  unstructured_r3 ep1/2 [150/352] loss 0.0292 acc 99.80% (468s, eta 630s)
+  unstructured_r3 ep1/2 [200/352] loss 0.0328 acc 99.68% (629s, eta 478s)
+  unstructured_r3 ep1/2 [250/352] loss 0.0395 acc 99.41% (796s, eta 325s)
+  unstructured_r3 ep1/2 [300/352] loss 0.0494 acc 98.98% (965s, eta 167s)
+  unstructured_r3 ep1/2 [350/352] loss 0.0610 acc 98.48% (1127s, eta 6s)
+[unstructured_r3] epoch 1/2: train 98.47% val 91.96% (1132s)
+  unstructured_r3 ep2/2 [50/352] loss 0.1004 acc 96.64% (155s, eta 939s)
+  unstructured_r3 ep2/2 [100/352] loss 0.0945 acc 96.74% (314s, eta 792s)
+  unstructured_r3 ep2/2 [150/352] loss 0.0956 acc 96.72% (472s, eta 636s)
+  unstructured_r3 ep2/2 [200/352] loss 0.0957 acc 96.72% (626s, eta 475s)
+  unstructured_r3 ep2/2 [250/352] loss 0.0957 acc 96.75% (780s, eta 318s)
+  unstructured_r3 ep2/2 [300/352] loss 0.0963 acc 96.74% (937s, eta 162s)
+  unstructured_r3 ep2/2 [350/352] loss 0.0962 acc 96.75% (1090s, eta 6s)
+[unstructured_r3] epoch 2/2: train 96.75% val 92.58% (1095s)
+[unstructured] final global sparsity 0.8000 (8,931,481/11,164,352 conv+fc weights are zero)
+[unstructured] val 92.58% | test 91.52% (loss 0.2676) | drop vs FP32 +0.04 pts
+[unstructured] saved D:\7th Semester\Edge Computing\Assignments\Assignment 03\models\checkpoints\unstructured_pruned.pth
+--- unstructured_pruning.py finished in 5747s
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\structured_pruning.py --data-dir D:\7th Semester\Edge Computing\Assignments\Assignment 03\data --seed 42 --batch-size 128 --threads 0 --internal-ratio 0.5 --stream-ratio 0.25 --epochs 4
+================================================================================
+[structured] baseline: test 91.56%, 11,173,962 params, 555.4 M MACs
+[structured] rebuilt model: 4,227,706 params (2.64x fewer), 210.1 M MACs (2.64x fewer); dimension check passed
+[structured] channels  stem 48 | blocks (in,mid,out): (48,32,48), (48,32,48), (48,64,96), (96,64,96), (96,128,192), (192,128,192), (192,256,384), (384,256,384)
+[structured] test acc right after pruning (no fine-tuning): 11.91%
+  structured ep1/4 [50/352] loss 0.3956 acc 86.39% (75s, eta 452s)
+  structured ep1/4 [100/352] loss 0.3664 acc 87.23% (150s, eta 377s)
+  structured ep1/4 [150/352] loss 0.3568 acc 87.63% (226s, eta 304s)
+  structured ep1/4 [200/352] loss 0.3474 acc 88.11% (301s, eta 229s)
+  structured ep1/4 [250/352] loss 0.3386 acc 88.43% (374s, eta 153s)
+  structured ep1/4 [300/352] loss 0.3338 acc 88.57% (452s, eta 78s)
+  structured ep1/4 [350/352] loss 0.3318 acc 88.63% (541s, eta 3s)
+[structured] epoch 1/4: train 88.62% val 87.70% (545s)
+  structured ep2/4 [50/352] loss 0.2660 acc 90.72% (102s, eta 615s)
+  structured ep2/4 [100/352] loss 0.2549 acc 91.19% (202s, eta 509s)
+  structured ep2/4 [150/352] loss 0.2536 acc 91.21% (303s, eta 408s)
+  structured ep2/4 [200/352] loss 0.2513 acc 91.22% (405s, eta 307s)
+  structured ep2/4 [250/352] loss 0.2495 acc 91.30% (505s, eta 206s)
+  structured ep2/4 [300/352] loss 0.2473 acc 91.44% (608s, eta 105s)
+  structured ep2/4 [350/352] loss 0.2450 acc 91.48% (710s, eta 4s)
+[structured] epoch 2/4: train 91.47% val 90.60% (713s)
+  structured ep3/4 [50/352] loss 0.2024 acc 92.91% (101s, eta 610s)
+  structured ep3/4 [100/352] loss 0.1852 acc 93.70% (205s, eta 516s)
+  structured ep3/4 [150/352] loss 0.1814 acc 93.73% (308s, eta 415s)
+  structured ep3/4 [200/352] loss 0.1790 acc 93.80% (412s, eta 313s)
+  structured ep3/4 [250/352] loss 0.1779 acc 93.86% (517s, eta 211s)
+  structured ep3/4 [300/352] loss 0.1732 acc 94.06% (619s, eta 107s)
+  structured ep3/4 [350/352] loss 0.1721 acc 94.12% (722s, eta 4s)
+[structured] epoch 3/4: train 94.12% val 91.64% (725s)
+  structured ep4/4 [50/352] loss 0.1238 acc 96.14% (103s, eta 619s)
+  structured ep4/4 [100/352] loss 0.1239 acc 96.10% (196s, eta 494s)
+  structured ep4/4 [150/352] loss 0.1284 acc 96.01% (264s, eta 356s)
+  structured ep4/4 [200/352] loss 0.1272 acc 95.96% (339s, eta 258s)
+  structured ep4/4 [250/352] loss 0.1265 acc 95.95% (410s, eta 167s)
+  structured ep4/4 [300/352] loss 0.1268 acc 95.91% (481s, eta 83s)
+  structured ep4/4 [350/352] loss 0.1266 acc 95.91% (553s, eta 3s)
+[structured] epoch 4/4: train 95.90% val 92.02% (555s)
+[structured] after fine-tuning: val 92.02% | test 91.51% (loss 0.2561) | drop vs FP32 +0.05 pts
+[structured] saved D:\7th Semester\Edge Computing\Assignments\Assignment 03\models\checkpoints\structured_pruned.pth
+--- structured_pruning.py finished in 2824s
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\export_onnx.py --data-dir D:\7th Semester\Edge Computing\Assignments\Assignment 03\data --num-samples 2000
+================================================================================
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\_utils.py:505: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\jit\_trace.py:1006: FutureWarning: `torch.jit.trace` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\jit\_trace.py:1145: FutureWarning: `torch.jit.trace_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[onnx] Original FP32
+  [fp32] dynamo opset 18 -> fp32.onnx (42.69 MB); ORT top-1 agreement 100.00%, max|dlogit| 9.54e-06, ORT acc 91.85% vs torch 91.85% on 2000 images
+[onnx] PTQ INT8
+  [ptq] dynamo export failed: TorchExportError: Failed to export the model with torch.export. [96mThis is step 1/3[0m of exporting the model to ONNX. Next steps:
+  [ptq] torchscript opset 13 -> ptq.onnx (10.77 MB); ORT top-1 agreement 99.70%, max|dlogit| 4.71e-01, ORT acc 91.90% vs torch 91.85% on 2000 images
+[onnx] QAT INT8
+  [qat] dynamo export failed: TorchExportError: Failed to export the model with torch.export. [96mThis is step 1/3[0m of exporting the model to ONNX. Next steps:
+  [qat] torchscript opset 13 -> qat.onnx (10.77 MB); ORT top-1 agreement 99.55%, max|dlogit| 3.96e-01, ORT acc 91.95% vs torch 91.80% on 2000 images
+[onnx] Unstructured-pruned
+  [unstructured] dynamo opset 18 -> unstructured.onnx (42.69 MB); ORT top-1 agreement 100.00%, max|dlogit| 1.14e-05, ORT acc 91.60% vs torch 91.60% on 2000 images
+[onnx] Structured-pruned
+  [structured] dynamo opset 18 -> structured.onnx (16.20 MB); ORT top-1 agreement 100.00%, max|dlogit| 1.05e-05, ORT acc 91.90% vs torch 91.90% on 2000 images
+[onnx] wrote D:\7th Semester\Edge Computing\Assignments\Assignment 03\onnx\manifest.json and D:\7th Semester\Edge Computing\Assignments\Assignment 03\results\onnx_validation.csv
+--- export_onnx.py finished in 104s
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\benchmark.py --data-dir D:\7th Semester\Edge Computing\Assignments\Assignment 03\data --batch-size 256 --latency-samples 10000 --repeats 3
+================================================================================
+[bench/pytorch] Original FP32 on cpu: loaded in 0.27s
+  acc 91.56% loss 0.2479 | 97.3 img/s (bs 256, passes 74.9s, 102.8s, 107.4s)
+  batch-1 latency mean 22.08 ms, p50 21.51, p95 24.21 ms over 10000 images (bs1/batched agreement 100.00%)
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\_utils.py:505: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[bench/pytorch] PTQ INT8 on cpu/onednn: loaded in 1.28s
+  acc 91.56% loss 0.2489 | 285.7 img/s (bs 256, passes 35.3s, 34.8s, 35.0s)
+  batch-1 latency mean 12.36 ms, p50 12.14, p95 13.45 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/pytorch] QAT INT8 on cpu/onednn: loaded in 1.29s
+  acc 91.74% loss 0.2599 | 284.3 img/s (bs 256, passes 35.2s, 35.1s, 35.2s)
+  batch-1 latency mean 12.45 ms, p50 12.21, p95 13.62 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/pytorch] Unstructured-pruned on cpu: loaded in 0.49s
+  acc 91.52% loss 0.2676 | 93.7 img/s (bs 256, passes 106.8s, 106.7s, 107.8s)
+  batch-1 latency mean 22.04 ms, p50 21.47, p95 24.27 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/pytorch] Structured-pruned on cpu: loaded in 0.23s
+  acc 91.51% loss 0.2561 | 207.7 img/s (bs 256, passes 48.1s, 48.1s, 48.3s)
+  batch-1 latency mean 13.85 ms, p50 13.09, p95 17.68 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/pytorch] wrote results/benchmark_summary.csv and results/predictions.csv
+[bench/onnx] Original FP32 on cpu/onnxruntime: loaded in 0.63s
+  acc 91.56% loss 0.2479 | 165.1 img/s (bs 256, passes 60.1s, 60.6s, 61.2s)
+  batch-1 latency mean 9.36 ms, p50 8.94, p95 11.08 ms over 10000 images (bs1/batched agreement 100.00%)
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[bench/onnx] PTQ INT8 on cpu/onnxruntime: loaded in 1.42s
+  acc 91.53% loss 0.2485 | 309.2 img/s (bs 256, passes 31.9s, 32.3s, 32.4s)
+  batch-1 latency mean 4.49 ms, p50 4.36, p95 5.14 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/onnx] QAT INT8 on cpu/onnxruntime: loaded in 1.33s
+  acc 91.70% loss 0.2598 | 316.7 img/s (bs 256, passes 31.8s, 31.5s, 31.6s)
+  batch-1 latency mean 4.50 ms, p50 4.49, p95 4.94 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/onnx] Unstructured-pruned on cpu/onnxruntime: loaded in 0.53s
+  acc 91.52% loss 0.2676 | 163.1 img/s (bs 256, passes 62.0s, 61.3s, 61.0s)
+  batch-1 latency mean 9.07 ms, p50 8.78, p95 10.13 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/onnx] Structured-pruned on cpu/onnxruntime: loaded in 0.26s
+  acc 91.51% loss 0.2561 | 424.9 img/s (bs 256, passes 23.4s, 24.0s, 23.5s)
+  batch-1 latency mean 3.19 ms, p50 3.14, p95 3.64 ms over 10000 images (bs1/batched agreement 100.00%)
+[bench/onnx] wrote results/onnx_benchmark_summary.csv and results/onnx_predictions.csv
+[bench] wrote results/model_comparison.csv
+--- benchmark.py finished in 2904s
+
+================================================================================
+$ D:\7th Semester\Edge Computing\Assignments\Assignment 03\scripts\make_report.py
+================================================================================
+[report] wrote D:\7th Semester\Edge Computing\Assignments\Assignment 03\docs\results_tables.md and figures in D:\7th Semester\Edge Computing\Assignments\Assignment 03\docs\figures
+--- make_report.py finished in 11s
+
+[main] done in 251.6 min

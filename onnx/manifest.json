@@ -1,0 +1,182 @@
+{
+  "fp32": {
+    "status": "exported",
+    "method": "dynamo",
+    "opset": 18,
+    "file": "fp32.onnx",
+    "size_mb": 42.68863391876221,
+    "op_types": [
+      "Add",
+      "Conv",
+      "Gemm",
+      "ReduceMean",
+      "Relu",
+      "Reshape"
+    ],
+    "attempts": [
+      {
+        "method": "dynamo",
+        "ok": true,
+        "time_s": 4.3
+      }
+    ],
+    "source_checkpoint": "fp32",
+    "validation": {
+      "samples": 2000,
+      "top1_agreement": 1.0,
+      "max_abs_logit_diff": 9.5367431640625e-06,
+      "mean_abs_logit_diff": 8.249202778642939e-07,
+      "ort_acc": 91.85,
+      "torch_acc": 91.85,
+      "allclose_1e-3": true
+    }
+  },
+  "ptq": {
+    "status": "exported",
+    "method": "torchscript",
+    "opset": 13,
+    "file": "ptq.onnx",
+    "size_mb": 10.770767211914062,
+    "op_types": [
+      "Add",
+      "Cast",
+      "Constant",
+      "ConstantOfShape",
+      "Conv",
+      "DequantizeLinear",
+      "Flatten",
+      "Gemm",
+      "GlobalAveragePool",
+      "QuantizeLinear",
+      "Relu"
+    ],
+    "attempts": [
+      {
+        "method": "dynamo",
+        "ok": false,
+        "error": "TorchExportError: Failed to export the model with torch.export. This is step 1/3 of exporting the model to ONNX. Next steps: | root cause AttributeError: __torch__.torch.classes.quantized.Conv2dPackedParamsBase (of Python compilation unit at: 0000000000000000) does not have a field with name '__obj_flatten__'"
+      },
+      {
+        "method": "torchscript",
+        "ok": true,
+        "time_s": 1.4
+      }
+    ],
+    "source_checkpoint": "ptq",
+    "validation": {
+      "samples": 2000,
+      "top1_agreement": 0.997,
+      "max_abs_logit_diff": 0.47068965435028076,
+      "mean_abs_logit_diff": 0.03691382706165314,
+      "ort_acc": 91.9,
+      "torch_acc": 91.85,
+      "allclose_1e-3": false
+    }
+  },
+  "qat": {
+    "status": "exported",
+    "method": "torchscript",
+    "opset": 13,
+    "file": "qat.onnx",
+    "size_mb": 10.770767211914062,
+    "op_types": [
+      "Add",
+      "Cast",
+      "Constant",
+      "ConstantOfShape",
+      "Conv",
+      "DequantizeLinear",
+      "Flatten",
+      "Gemm",
+      "GlobalAveragePool",
+      "QuantizeLinear",
+      "Relu"
+    ],
+    "attempts": [
+      {
+        "method": "dynamo",
+        "ok": false,
+        "error": "TorchExportError: Failed to export the model with torch.export. This is step 1/3 of exporting the model to ONNX. Next steps: | root cause AttributeError: __torch__.torch.classes.quantized.Conv2dPackedParamsBase (of Python compilation unit at: 0000000000000000) does not have a field with name '__obj_flatten__'"
+      },
+      {
+        "method": "torchscript",
+        "ok": true,
+        "time_s": 1.2
+      }
+    ],
+    "source_checkpoint": "qat",
+    "validation": {
+      "samples": 2000,
+      "top1_agreement": 0.9955,
+      "max_abs_logit_diff": 0.3957662582397461,
+      "mean_abs_logit_diff": 0.05329973250627518,
+      "ort_acc": 91.95,
+      "torch_acc": 91.8,
+      "allclose_1e-3": false
+    }
+  },
+  "unstructured": {
+    "status": "exported",
+    "method": "dynamo",
+    "opset": 18,
+    "file": "unstructured.onnx",
+    "size_mb": 42.68863391876221,
+    "op_types": [
+      "Add",
+      "Conv",
+      "Gemm",
+      "ReduceMean",
+      "Relu",
+      "Reshape"
+    ],
+    "attempts": [
+      {
+        "method": "dynamo",
+        "ok": true,
+        "time_s": 2.5
+      }
+    ],
+    "source_checkpoint": "unstructured",
+    "validation": {
+      "samples": 2000,
+      "top1_agreement": 1.0,
+      "max_abs_logit_diff": 1.1444091796875e-05,
+      "mean_abs_logit_diff": 7.586628498756909e-07,
+      "ort_acc": 91.60000000000001,
+      "torch_acc": 91.60000000000001,
+      "allclose_1e-3": true
+    }
+  },
+  "structured": {
+    "status": "exported",
+    "method": "dynamo",
+    "opset": 18,
+    "file": "structured.onnx",
+    "size_mb": 16.19713020324707,
+    "op_types": [
+      "Add",
+      "Conv",
+      "Gemm",
+      "ReduceMean",
+      "Relu",
+      "Reshape"
+    ],
+    "attempts": [
+      {
+        "method": "dynamo",
+        "ok": true,
+        "time_s": 2.9
+      }
+    ],
+    "source_checkpoint": "structured",
+    "validation": {
+      "samples": 2000,
+      "top1_agreement": 1.0,
+      "max_abs_logit_diff": 1.049041748046875e-05,
+      "mean_abs_logit_diff": 7.720905159658287e-07,
+      "ort_acc": 91.9,
+      "torch_acc": 91.9,
+      "allclose_1e-3": true
+    }
+  }
+}

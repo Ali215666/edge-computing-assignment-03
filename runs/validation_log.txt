@@ -1,0 +1,36 @@
+PASS  script --help: benchmark.py: ok
+PASS  script --help: export_onnx.py: ok
+PASS  script --help: inference.py: ok
+PASS  script --help: make_report.py: ok
+PASS  script --help: onnx_inference.py: ok
+PASS  script --help: ptq.py: ok
+PASS  script --help: qat.py: ok
+PASS  script --help: structured_pruning.py: ok
+PASS  script --help: train.py: ok
+PASS  script --help: unstructured_pruning.py: ok
+PASS  load + CPU inference: fp32: output (64, 10), acc on 64 test images 90.6%, smoke=False
+PASS  checkpoint save/load round trip: fp32: identical outputs after reload
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\_utils.py:505: UserWarning: TypedStorage is deprecated. It will be removed in the future and UntypedStorage will be the only storage class. This should only matter to you if you are using storages directly.  To access UntypedStorage directly, use tensor.untyped_storage() instead of tensor.storage()
+  device=storage.device,
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+PASS  load + CPU inference: ptq: output (64, 10), acc on 64 test images 90.6%, smoke=False
+PASS  checkpoint save/load round trip: ptq: identical outputs after reload
+PASS  load + CPU inference: qat: output (64, 10), acc on 64 test images 90.6%, smoke=False
+PASS  checkpoint save/load round trip: qat: identical outputs after reload
+PASS  load + CPU inference: unstructured: output (64, 10), acc on 64 test images 90.6%, smoke=False
+PASS  checkpoint save/load round trip: unstructured: identical outputs after reload
+PASS  load + CPU inference: structured: output (64, 10), acc on 64 test images 89.1%, smoke=False
+PASS  checkpoint save/load round trip: structured: identical outputs after reload
+PASS  INT8 conversion: ptq: 21 INT8 conv/linear layers (['Conv2d', 'ConvReLU2d', 'Linear']), weights {torch.qint8}, engine onednn
+PASS  INT8 conversion: qat: 21 INT8 conv/linear layers (['Conv2d', 'ConvReLU2d', 'Linear']), weights {torch.qint8}, engine onednn
+PASS  unstructured: pruning made permanent, sparsity: conv+fc sparsity 0.8000 (target 0.8), no masks/hooks
+PASS  structured: physically smaller, valid dimensions: 4,227,706 vs 11,173,962 params (2.64x), 20 conv layers with fewer channels
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+PASS  unified PyTorch inference script (all models): fp32:cat(1.00), ptq:cat(1.00), qat:cat(1.00), unstructured:cat(1.00), structured:cat(1.00)
+PASS  ONNX Runtime inference script (all exported models): fp32:3(1.00), ptq:3(1.00), qat:3(1.00), unstructured:3(1.00), structured:3(1.00)
+PASS  ONNX exports validated against PyTorch: top-1 agreement: fp32 100.00%, ptq 99.70%, qat 99.55%, unstructured 100.00%, structured 100.00%
+PASS  result CSVs contain measured data for all models: 5 models, 10000 predictions/model, training_history 25 rows, stages ['baseline', 'qat', 'structured', 'unstructured']
+
+28/28 checks passed -> results/validation_report.json

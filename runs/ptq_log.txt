@@ -1,0 +1,8 @@
+[ptq] quantized engine: onednn (available: ['onednn']), reduce_range=True
+[ptq] FP32 baseline test acc 91.56%
+[ptq] after Conv-BN(-ReLU) fusion (still FP32): 91.56%
+C:\Users\hp\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\ao\quantization\observer.py:1039: UserWarning: Please use quant_min and quant_max to specify the range for observers.                     reduce_range will be deprecated in a future release of PyTorch.
+  super().__init__(
+[ptq] calibrated on 2000 training images in 31.5s
+[ptq] INT8 val 92.38% | test 91.56% (loss 0.2489) | drop vs FP32 +0.00 pts
+[ptq] saved D:\7th Semester\Edge Computing\Assignments\Assignment 03\models\checkpoints\ptq_int8.pth

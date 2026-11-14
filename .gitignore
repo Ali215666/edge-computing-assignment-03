@@ -1,0 +1,9 @@
+data/
+__pycache__/
+*.tmp
+runs/smoke/
+.venv/
+# >100 MB resume state (GitHub file limit); not needed to use the final models
+models/checkpoints/train_state.pth
+# archived reduced-budget checkpoints (logs are kept)
+runs/reduced_budget/*.pth
